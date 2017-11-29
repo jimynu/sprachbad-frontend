@@ -1,0 +1,8 @@
+header {
+  background-color: #69A6CE;
+  width: 100%;
+}
+
+header > div {
+  padding: 20px 0 20px 30px;
+}

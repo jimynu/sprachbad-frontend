@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Learn from './containers/Learn';
+import BathContainer from './containers/BathContainer';
+import PrepareContainer from './containers/PrepareContainer';
+import SummaryContainer from './containers/SummaryContainer';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import store from './store'
@@ -11,10 +13,9 @@ ReactDOM.render(
   <Provider store={ store }>
     <Router>
       <Switch>
-        <Route exact path="/" component={ Learn } />
-        <Route exact path="/prepare" component={ Learn } />
-        <Route exact path="/learn" component={ Learn } />
-        <Route exact path="/users/:userId" component={ Learn } />
+        <Route exact path="/" component={ SummaryContainer } />
+        <Route exact path="/prepare" component={ PrepareContainer } />
+        <Route exact path="/bath" component={ BathContainer } />
       </Switch>
     </Router>
   </Provider>,

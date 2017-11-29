@@ -1,5 +1,71 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #222;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.App {
+  height: 100%;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+h1 {
+  font-weight: 600;
+  color: white;
+}
+
+h2 {
+  font-weight: 200;
+}
+
+
+.leftCol {
+  float: left;
+  width: 230px;
+  height: 100%;
+}
+
+.rightCol {
+  margin-left: 250px;
+  padding-left: 20px;
+  border-left: 1px solid #69A6CE;
+  min-height: 50px;
+}
+
+button {
+  background-color: #bbb;
+  border-radius: 5px;
+  border: none;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: white;
+  box-shadow: 0 3px #999;
+}
+
+button:hover, button:active {
+  color: #333;
+}
+
+button.default {
+  background-color: #6CC17A;
+  box-shadow: 0 3px #569861;
+}
+
+button.default:hover, button.default:active {
+  color: #1f4132;
+}
+
+button .icon {
+  margin-right: 10px;
 }
