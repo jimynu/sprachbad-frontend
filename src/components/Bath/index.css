@@ -1,0 +1,44 @@
+.message {
+  text-align: center;
+}
+
+
+.Bath .sentence {
+  position: absolute;
+  top: calc(50%);
+  left: 50%;
+  margin-right: -50%;
+  transform: translateX(-50%);
+}
+
+.Bath .sentence h1 {
+  font-weight: 300;
+  font-size: 5vw;
+}
+
+.Bath .sentence input {
+  border: 0;
+  /*border-bottom: 1px solid #999;*/
+  margin: 0 2vw;
+  font-size: 5vw;
+
+  /* https://stackoverflow.com/questions/41658552/how-to-create-a-7-character-underline-input-text-field-in-html-and-cssscreensho/41661432 */
+  background:
+    repeating-linear-gradient(90deg,
+        transparent 0,
+        transparent 0.3ch,
+        #444 0.3ch,
+        #444 0.8ch,
+        transparent 0.8ch,
+        transparent 1ch)
+      0 100%/100% 1px no-repeat;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 300;
+  color: #69A6CE;
+  letter-spacing: 0ch;
+
+}
+
+.Bath .sentence input:focus {
+  outline: none;
+}

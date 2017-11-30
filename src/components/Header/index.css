@@ -6,3 +6,8 @@ header {
 header > div {
   padding: 20px 0 20px 30px;
 }
+
+header h1 {
+  font-weight: 600;
+  color: white;
+}

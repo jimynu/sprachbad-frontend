@@ -17,8 +17,8 @@ class Progress extends Component {
           <br/><br/><ProgressBar poor="4" learning="2" mastered="2" />
 
           <br/><br/>
-          <button><span className="icon ion-edit" />add/remove words</button>
-          <button><span className="icon ion-podium" />change level</button>
+          <button><span className="icon ion-edit" />add/remove words</button>&nbsp;&nbsp;
+          <button><span className="icon ion-podium" />change level</button>&nbsp;&nbsp;
           <Link to="bath"><button className="default">learn!</button></Link>
 
         </div>

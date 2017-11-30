@@ -14,6 +14,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/" component={ SummaryContainer } />
+        <Route exact path="/summary" component={ SummaryContainer } />
         <Route exact path="/prepare" component={ PrepareContainer } />
         <Route exact path="/bath" component={ BathContainer } />
       </Switch>
