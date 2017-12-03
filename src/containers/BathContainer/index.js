@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Bath from '../../components/Bath';
+import BathProgress from '../../components/Bath/BathProgress';
 import { runBath, reportSuccess } from '../../store/actions/bath';
 
 
 class BathContainer extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      message: ''
-    }
-  }
 
   componentDidMount() {
     runBath()
@@ -21,15 +15,7 @@ class BathContainer extends Component {
       })
   }
 
-  checkAnswer = (answer) => {
-    //feedback (to be improved with colors, in place, timing etc.)
-    const success = ( answer === this.props.a );
-    if ( success ) {
-      this.setState({ message: '*\\ O /*' });
-    } else {
-      this.setState({ message: this.props.a });
-    }
-
+  checkAnswer = (success, answer) => {
     reportSuccess(this.props.lexemeId, success, answer)
       .then(action => {
         if (action.payload) {
@@ -41,18 +27,21 @@ class BathContainer extends Component {
   }
 
   render() {
+    
+    if (this.props.done) {
+      setTimeout( () => { this.props.history.push('/summary'); }, 100);
+    }
+
+    const { q, a, wrongPercent, correctPercent } = this.props;
     return (
       <div className="App">
-        <Header title="Sprachbad" />
-        <div className="main message">
-          { this.state.message }
-        </div>
+        <Header />
         <div style={{textAlign: 'center'}}>
-        { this.props.done ? this.props.history.push('/summary') : ''}
-        { this.props.q
-          ? <Bath q={ this.props.q } a={ this.props.a } checkAnswer={ this.checkAnswer } />
-          : 'Preparing your bath...' }
+        { q
+          ? <Bath q={ q } a={ a } checkAnswer={ this.checkAnswer } />
+          : '' }
         </div>
+        <BathProgress correct={ correctPercent } wrong={ wrongPercent } />
       </div>
     );
   }
@@ -67,16 +56,20 @@ const mapStateToProps = (state, props) => {
 
   else {
     const sentence = state.bath.sentences[state.bath.current];
+    //
+    // const pos = sentence.task.q.indexOf(' ' + sentence.task.a + ' ');
+    // const left = sentence.task.q.substring( 0, pos );
+    // const right = sentence.task.q.substring( pos + sentence.task.a.length + 2 );
 
-    const pos = sentence.task.q.indexOf(' ' + sentence.task.a + ' ');
-    const left = sentence.task.q.substring( 0, pos );
-    const right = sentence.task.q.substring( pos + sentence.task.a.length + 2 );
+    const { correct, wrong, total } = state.bath.progress
 
     return {
       lexeme: sentence.lexeme,
       lexemeId: sentence.lexemeId,
       a: sentence.task.a,
-      q: [ left, right ],
+      q: sentence.task.q,
+      correctPercent: correct / total * 100,
+      wrongPercent: wrong / total * 100,
     };
   }
 }

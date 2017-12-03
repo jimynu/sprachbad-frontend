@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+import logo from './logo_header.png';
 
 
 class Header extends Component {
@@ -7,9 +8,10 @@ class Header extends Component {
     return (
       <header>
         <div>
-          <h1>
-            { this.props.title }
-          </h1>
+          { this.props.title
+            ? <h1>{ this.props.title }</h1>
+            : <div className="centered"><img src={logo} alt="logo" /></div>
+          }
         </div>
       </header>
     );

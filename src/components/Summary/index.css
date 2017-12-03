@@ -13,6 +13,7 @@
   float: left;
   text-align: center;
   padding: 10px 0 0;
+  overflow: hidden;
 }
 
 .ProgressBar .poor {
@@ -25,4 +26,51 @@
 
 .ProgressBar .mastered {
   background-color: #8EBCDA;
+}
+
+
+
+.Recap {
+  margin-bottom: 50px;
+}
+
+.Recap ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 20px;
+  font-size: 120%;
+  margin-top: 20px;
+}
+
+.Recap ul li {
+  margin-top: 10px;
+}
+
+.Recap ul li.correct:before {
+  content: '✓';
+  color: #6CC17A;
+  margin-right: 5px;
+}
+
+.Recap ul li.wrong:before {
+  content: '✕';
+  color: #cd0e0e;
+  margin-right: 8px;
+  font-size: 80%;
+}
+
+
+.Recap .correctAnswer,
+.Recap .wrongAnswer {
+  font-weight: 500;
+}
+
+.Recap .correctAnswer {
+  color: #6CC17A;
+}
+
+.Recap .wrongAnswer {
+  color: #cd0e0e;
+  text-decoration: line-through;
 }

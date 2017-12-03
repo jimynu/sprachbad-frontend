@@ -11,3 +11,7 @@ header h1 {
   font-weight: 600;
   color: white;
 }
+
+header .centered {
+  text-align: center;
+}

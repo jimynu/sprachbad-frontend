@@ -22,16 +22,12 @@ export const reportSuccess = (lexemeId, success, wrongAnswer, user = DEFAULT_USE
   const params = { method: 'PUT' }
 
   return fetch(url, params)
-    .then( response => {
-      if (response.ok) {
-        return saveSuccess( lexemeId, success, wrongAnswer );
-      } else {
-        return {message: 'error: ' + response.status};
-      }
-    })
+    .then( response => response.ok
+       ? saveSuccess( lexemeId, success, wrongAnswer )
+       : {message: 'error: ' + response.status}
+      )
     .catch( error => { } );
 }
-
 
 
 
