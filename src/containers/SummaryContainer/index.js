@@ -7,7 +7,7 @@ import { fetchMyLexemes } from '../../store/actions/user';
 import { connect } from 'react-redux';
 
 
-class App extends Component {
+class SummaryContainer extends Component {
 
   componentDidMount() {
     this.props.dispatch(resetCurrent); // reset "pointer" of current task in learning session
@@ -58,4 +58,4 @@ const mapStateToProps = (state, props) => {
   return { user: state.user };
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(SummaryContainer);
