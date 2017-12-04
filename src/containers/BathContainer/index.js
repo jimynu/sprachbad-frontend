@@ -27,7 +27,7 @@ class BathContainer extends Component {
   }
 
   render() {
-    
+
     if (this.props.done) {
       setTimeout( () => { this.props.history.push('/summary'); }, 100);
     }
@@ -37,9 +37,7 @@ class BathContainer extends Component {
       <div className="App">
         <Header />
         <div style={{textAlign: 'center'}}>
-        { q
-          ? <Bath q={ q } a={ a } checkAnswer={ this.checkAnswer } />
-          : '' }
+        { q &&  <Bath q={ q } a={ a } checkAnswer={ this.checkAnswer } /> }
         </div>
         <BathProgress correct={ correctPercent } wrong={ wrongPercent } />
       </div>

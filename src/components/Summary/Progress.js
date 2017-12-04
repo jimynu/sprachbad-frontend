@@ -15,12 +15,13 @@ class Progress extends Component {
         <div className="rightCol">
           You are learning { lexemes.length } words.
 
-          <br/><br/><ProgressBar poor={ poor } learning={ learning } mastered={ mastered } />
+          <ProgressBar poor={ poor } learning={ learning } mastered={ mastered } />
 
-          <br/><br/>
-          <button><span className="icon ion-edit" />add/remove words</button>&nbsp;&nbsp;
-          <button><span className="icon ion-podium" />change level</button>&nbsp;&nbsp;
-          <Link to="bath"><button className="default">learn!</button></Link>
+          <div className="actionButtons">
+            <Link to="settings#words"><button><span className="icon ion-edit" />choose words</button></Link>
+            <Link to="settings#level"><button><span className="icon ion-podium" />change level</button></Link>
+            <Link to="bath"><button className="default">learn!</button></Link>
+          </div>
 
         </div>
       </div>
