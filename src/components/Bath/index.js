@@ -20,17 +20,25 @@ class Bath extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if ( this.state.answer === '' ) return;
 
-    const success  =  this.state.answer === this.props.a;
-    if ( success ) {
+    const givenAnswer = this.state.answer;
+    const correctAnswer = this.props.a;
+    
+    if ( givenAnswer === '' ) return;
+
+    const success     =  givenAnswer.toLowerCase() === correctAnswer.toLowerCase();
+    const properCase  =  givenAnswer === correctAnswer;
+
+    if ( success && properCase ) {
       this.setState({ submitted: true, result: 'correct' });
+    } else if (success) {
+      this.setState({ submitted: true, result: 'correct', correction: correctAnswer });
     } else {
-      this.setState({ submitted: true, result: 'wrong', correction: this.props.a });
+      this.setState({ submitted: true, result: 'wrong', correction: correctAnswer });
     }
 
     setTimeout( (sucess) => {
-      this.props.checkAnswer( success, this.state.answer );
+      this.props.checkAnswer( success, givenAnswer );
       this.setState( { answer: '', submitted: false, result: '', correction: '' } );
     }, 1200);
   }

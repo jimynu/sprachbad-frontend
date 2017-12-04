@@ -21,9 +21,7 @@ class Recap extends Component {
                   key={ sentence.lexemeId }
                   className={ sentence.success ? 'correct' : 'wrong' } >
                     { sentence.task.q[0] + ' ' }
-                    { sentence.success
-                      ? ''
-                      : <span className="wrongAnswer">{ sentence.answer }</span>
+                    { !sentence.success && <span className="wrongAnswer">{ sentence.answer }</span>
                     }
                     <span className="correctAnswer">{ ' ' + sentence.task.a }</span>
                     { ' ' + sentence.task.q[1] }
@@ -39,7 +37,7 @@ class Recap extends Component {
 }
 
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   return { bath: state.bath }
 }
 
