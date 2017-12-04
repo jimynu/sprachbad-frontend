@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './resources/buttons.css';
 import BathContainer from './containers/BathContainer';
 import PrepareContainer from './containers/PrepareContainer';
 import SummaryContainer from './containers/SummaryContainer';

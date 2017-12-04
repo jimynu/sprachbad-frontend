@@ -7,7 +7,10 @@ class Bath extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      answer: ''
+      answer: '',
+      submitted: false,
+      result: '',
+      correction: '',
     }
   }
 
@@ -17,19 +20,39 @@ class Bath extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState( {answer: ''} );
-    this.props.checkAnswer(this.state.answer);
+    if ( this.state.answer === '' ) return;
+
+    const success  =  this.state.answer === this.props.a;
+    if ( success ) {
+      this.setState({ submitted: true, result: 'correct' });
+    } else {
+      this.setState({ submitted: true, result: 'wrong', correction: this.props.a });
+    }
+
+    setTimeout( (sucess) => {
+      this.props.checkAnswer( success, this.state.answer );
+      this.setState( { answer: '', submitted: false, result: '', correction: '' } );
+    }, 1200);
   }
 
   render() {
+    const {q, a} = this.props;
     return (
       <div className="Bath">
         <form onSubmit={ this.handleSubmit }>
-          <div className="sentence"><h1>
-          { this.props.q[0] }
-          <input type="text" maxLength={ this.props.a.length } style={{ width: this.props.a.length + 0.1 + 'ch' }} onChange={ this.handleInput } value={ this.state.answer } />
-          { this.props.q[1] }
-          </h1></div>
+          <div className={ this.state.submitted ? 'sentence fadeOut' : 'sentence' } >
+            <h1>
+              { q[0] }
+              <input type="text"
+                maxLength={ a.length }
+                style={{ width: a.length + 0.1 + 'ch' }}
+                className={ this.state.submitted ? this.state.result : '' }
+                onChange={ this.handleInput }
+                value={ this.state.answer } />
+                <div className={ this.state.correction === '' ? 'popoverWrapper' : 'popoverWrapper show' } ><span className="correctionPopover">{ this.state.correction }</span></div>
+              { q[1] }
+            </h1>
+          </div>
         </form>
       </div>
     );
