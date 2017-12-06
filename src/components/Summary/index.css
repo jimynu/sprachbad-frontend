@@ -6,6 +6,7 @@
 .ProgressBar {
   width: 100%;
   height: 40px;
+  margin-top: 30px;
 }
 
 .ProgressBar > * {
@@ -13,16 +14,68 @@
   float: left;
   text-align: center;
   padding: 10px 0 0;
+  overflow: hidden;
 }
 
-.ProgressBar .poor {
-  background-color: #D9E8F2;
+.ProgressBar .poor     { background-color: #D9E8F2; }
+.ProgressBar .learning { background-color: #B4D2E6; }
+.ProgressBar .mastered { background-color: #8EBCDA; }
+
+
+.Progress .actionButtons {
+  margin-top: 30px;
 }
 
-.ProgressBar .learning {
-  background-color: #B4D2E6;
+.Progress .actionButtons button {
+  margin-right: 10px;
 }
 
-.ProgressBar .mastered {
-  background-color: #8EBCDA;
+
+
+.Recap {
+  margin-bottom: 50px;
+}
+
+.Recap ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 20px;
+  font-size: 120%;
+  margin-top: 20px;
+}
+
+.Recap ul li {
+  margin-top: 10px;
+}
+
+.Recap ul li.correct:before {
+  content: '✓';
+  color: #6CC17A;
+  margin-right: 5px;
+}
+
+.Recap ul li.wrong:before {
+  content: '✕';
+  color: #cd0e0e;
+  margin-right: 8px;
+  font-size: 80%;
+}
+
+
+.Recap .correctAnswer,
+.Recap .wrongAnswer {
+  font-weight: 500;
+}
+
+.Recap .correctAnswer {
+  color: #6CC17A;
+  font-weight: 600;
+}
+
+.Recap .wrongAnswer {
+  color: #cd0e0e;
+  background-color: #F5CECE;
+  text-decoration: line-through;
+  padding: 0 4px;
 }

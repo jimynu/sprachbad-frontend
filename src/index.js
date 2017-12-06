@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './resources/buttons.css';
 import BathContainer from './containers/BathContainer';
-import PrepareContainer from './containers/PrepareContainer';
+import SettingsContainer from './containers/SettingsContainer';
 import SummaryContainer from './containers/SummaryContainer';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
@@ -14,7 +15,8 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/" component={ SummaryContainer } />
-        <Route exact path="/prepare" component={ PrepareContainer } />
+        <Route exact path="/summary" component={ SummaryContainer } />
+        <Route exact path="/settings" component={ SettingsContainer } />
         <Route exact path="/bath" component={ BathContainer } />
       </Switch>
     </Router>

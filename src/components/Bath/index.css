@@ -1,0 +1,156 @@
+.Bath .sentence {
+  position: absolute;
+  top: calc(50%);
+  left: 50%;
+  margin-right: -50%;
+  transform: translateX(-50%);
+
+  opacity: 1;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+}
+
+.Bath .sentence.fadeOut {
+  opacity: 0;
+  transition-delay: 1s;
+}
+
+.Bath .sentence h1 {
+  font-weight: 300;
+  margin: 30px;
+}
+
+.Bath .sentence * {
+  font-size: calc(12px + 5vw)
+}
+
+.Bath .sentence input {
+  border: 0;
+  /*border-bottom: 1px solid #999;*/
+  margin: 0 2vw;
+
+  /* https://stackoverflow.com/questions/41658552/how-to-create-a-7-character-underline-input-text-field-in-html-and-cssscreensho/41661432 */
+  background:
+    repeating-linear-gradient(90deg,
+        transparent 0,
+        transparent 0.3ch,
+        #444 0.3ch,
+        #444 0.8ch,
+        transparent 0.8ch,
+        transparent 1ch)
+      0 100%/100% 1px no-repeat;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 300;
+  color: #69A6CE;
+  letter-spacing: 0ch;
+  outline: none;
+}
+
+.Bath .sentence input.correct {
+  color: #6CC17A;
+  background-color: #e1f2e4;
+  caret-color: #e1f2e4;
+}
+
+.Bath .sentence input.wrong {
+  color: #cd0e0e;
+  background-color: #f5cece;
+  caret-color: #f5cece;
+}
+
+
+
+
+/* PROGRESS */
+
+.BathProgress {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1vh;
+}
+
+.BathProgress .correctAnswers {
+  background-color: #6CC17A;
+  float: left;
+  height: 100%;
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+}
+
+.BathProgress .wrongAnswers {
+  background-color: #CD0E0E;
+  float: right;
+  height: 100%;
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+}
+
+
+
+
+/* FEEDBACK BOX – work in progress */
+
+.Bath .popoverWrapper {
+  position: relative;
+  display: inline-block;
+  /*border: 1px solid black;   show 0-point for positioning */
+  opacity: 0;
+  color: #6CC17A;
+  bottom: 0vw; /* animation */
+}
+
+.Bath .popoverWrapper.show {
+  opacity: 1;
+  /* animation */
+  bottom: 2vw;
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+}
+
+.Bath .popoverWrapper .correctionPopover {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 4vw;
+  /*border-bottom: 2px solid #6CC17A;*/
+  border: 2px solid #6CC17A;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  bottom: 6vw;
+  padding: 10px;
+  /*background-color: #e1f2e4;*/
+  background-color: white;
+}
+
+
+/* triangle */
+.Bath .popoverWrapper .correctionPopover::before {
+  content: '';
+  position: absolute;
+  bottom: -2vw;
+  left: 1vw; /* mittig: calc(50% - 2vw) */
+  border-top: 2vw solid #6CC17A;
+  border-left: 2vw solid transparent;
+  border-right: 2vw solid transparent;
+}
+
+/* triangle border */
+.Bath .popoverWrapper .correctionPopover::after {
+  content: '';
+  position: absolute;
+  bottom: calc(-2vw + 3px);
+  left: 1vw;
+  border-top: 2vw solid white;
+  border-left: 2vw solid transparent;
+  border-right: 2vw solid transparent;
+}
+
+
+/*bottom: -1.2vw;*/
+/*left: calc(50% - 1vw);*/
+/*height: 2vw;
+width: 2vw;*/
+/*background-color: #e1f2e4;*/
+/*border-bottom: 1px solid #ff0000;
+border-right: 1px solid #ff0000;*/
+/*transform: rotate(45deg);*/
