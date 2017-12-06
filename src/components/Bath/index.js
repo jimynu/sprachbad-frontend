@@ -23,7 +23,7 @@ class Bath extends Component {
 
     const givenAnswer = this.state.answer;
     const correctAnswer = this.props.a;
-    
+
     if ( givenAnswer === '' ) return;
 
     const success     =  givenAnswer.toLowerCase() === correctAnswer.toLowerCase();
@@ -57,7 +57,10 @@ class Bath extends Component {
                 className={ this.state.submitted ? this.state.result : '' }
                 onChange={ this.handleInput }
                 value={ this.state.answer } />
-                <div className={ this.state.correction === '' ? 'popoverWrapper' : 'popoverWrapper show' } ><span className="correctionPopover">{ this.state.correction }</span></div>
+              <div
+                className={ this.state.correction === '' ? 'popoverWrapper' : 'popoverWrapper show' } >
+                <span className="correctionPopover">{ this.state.correction }</span>
+              </div>
               { q[1] }
             </h1>
           </div>

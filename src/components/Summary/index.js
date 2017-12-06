@@ -8,8 +8,8 @@ class Summary extends Component {
   render() {
     return (
       <div className="Summary">
-        { this.props.showRecap && <Recap bath={this.props.bath} /> }
-        <Progress lexemes={ this.props.lexemes } />
+        { this.props.showRecap && <Recap bath={ this.props.bath } /> }
+        <Progress lexemes={ this.props.lexemes } level={ this.props.level } />
       </div>
     );
   }

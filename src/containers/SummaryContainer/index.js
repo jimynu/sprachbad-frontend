@@ -3,7 +3,7 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Summary from '../../components/Summary';
 import { resetCurrent } from '../../store/actions';
-import { fetchMyLexemes } from '../../store/actions/user';
+import { fetchMyLexemes, fetchUser } from '../../store/actions/user';
 import { connect } from 'react-redux';
 
 
@@ -12,9 +12,16 @@ class SummaryContainer extends Component {
   componentDidMount() {
     this.props.dispatch(resetCurrent); // reset "pointer" of current task in learning session
 
-    if ( !this.props.myLexemes ) {
+    if ( !this.props.userLexemesLoaded ) {
       fetchMyLexemes()
         .then( (action) => this.props.dispatch(action) );
+    }
+
+    if ( !this.props.user ) {
+      fetchUser()
+        .then( action => {
+          if (action.payload._id) this.props.dispatch(action);
+        });
     }
   }
 
@@ -23,12 +30,12 @@ class SummaryContainer extends Component {
       <div>
         <div className="App">
           <Header title="Summary" />
-          {
-            this.props.myLexemes
-            ? <Summary
-                lexemes={ this.props.myLexemes }
-                showRecap={ this.props.bathLoaded } />
-            : ''
+          { this.props.myLexemes && this.props.user.id &&
+            <Summary
+              lexemes={ this.props.myLexemes }
+              level={ this.props.user.level }
+              showRecap={ this.props.showRecap }
+            />
           }
         </div>
         <Footer />
@@ -39,8 +46,7 @@ class SummaryContainer extends Component {
 
 
 const mapStateToProps = (state, props) => {
-
-  if ( state.user.lexemes ) {
+  if ( state.user.lexemesLoaded ) {
     const lexemes = state.user.lexemes;
     const myLexemes = {
       lexemes,
@@ -49,13 +55,17 @@ const mapStateToProps = (state, props) => {
       mastered: lexemes.filter( ({ progress }) => progress >= 5 ).length,
     };
 
+    const bath = state.bath.sentences;
+
     return {
       myLexemes,
-      bathLoaded: state.bath.sentences
+      showRecap: bath && bath[bath.length-1].answer,
+      userLexemesLoaded: state.user.lexemesLoaded,
+      user: state.user,
     };
   }
 
-  return { user: state.user };
+  return {};
 }
 
 export default connect(mapStateToProps)(SummaryContainer);

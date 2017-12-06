@@ -7,17 +7,16 @@ body {
   font-weight: 300;
 }
 
+strong {
+  font-weight: 600;
+}
+
 html, body, #root, .App { /* hand down full height */
   height: 100%;
 }
 
 .main {
   padding: 30px;
-}
-
-h1, h2, h3, h4 {
-  margin: 0;
-  font-weight: 200;
 }
 
 .leftCol {
@@ -32,5 +31,11 @@ h1, h2, h3, h4 {
   padding-top: 5px;
   padding-bottom: 10px;
   border-left: 1px solid #69A6CE;
-  min-height: 50px;
+  /*min-height: 50px;*/
+}
+
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 200;
 }
