@@ -42,9 +42,3 @@ export const setUser = (user) => ({
 
 
 /*** LEXEMES ***/
-
-export const SET_LEXEMES = 'setLexemes';
-export const setLexemes = (lexemes) => ({
-  type: SET_LEXEMES,
-  payload: lexemes
-});
