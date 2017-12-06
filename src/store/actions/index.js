@@ -26,23 +26,3 @@ export const setMyLexemes = (lexemes) => ({
   type: SET_MY_LEXEMES,
   payload: lexemes
 });
-<<<<<<< HEAD
-=======
-
-export const REMOVE_FROM_MY_LEXEMES = 'removeFromMyLexemes';
-export const removeFromMyLexemes = (lexemeId) => ({
-  type: REMOVE_FROM_MY_LEXEMES,
-  payload: lexemeId
-});
-
-export const SET_USER = 'setUser';
-export const setUser = (user) => ({
-  type: SET_USER,
-  payload: user
-});
-
-
-
-/*** LEXEMES ***/
-
->>>>>>> 19e4a6268f41dcc1ac54414b70126851bacea90b
