@@ -70,9 +70,12 @@
 
 .Recap .correctAnswer {
   color: #6CC17A;
+  font-weight: 600;
 }
 
 .Recap .wrongAnswer {
   color: #cd0e0e;
+  background-color: #F5CECE;
   text-decoration: line-through;
+  padding: 0 4px;
 }

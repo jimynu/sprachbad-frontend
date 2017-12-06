@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import ProgressBar from './ProgressBar';
 import { Link } from 'react-router-dom';
+import * as TranslateLevels from '../../resources/translateLevels';
 
 
 class Progress extends Component {
@@ -13,7 +14,8 @@ class Progress extends Component {
           <h2>Progress</h2>
         </div>
         <div className="rightCol">
-          You are learning { lexemes.length } words.
+          You are learning <strong>{ lexemes.length }</strong> words.
+          <p>The level is set to <strong>{ TranslateLevels.numToStr(this.props.level) }</strong>.</p>
 
           <ProgressBar poor={ poor } learning={ learning } mastered={ mastered } />
 

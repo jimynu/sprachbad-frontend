@@ -1,8 +1,9 @@
 button {
+  padding: 12px 20px;
+  margin: 6px 0;
   background-color: #bbb;
   border-radius: 5px;
   border: none;
-  padding: 12px 20px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -12,6 +13,8 @@ button {
   color: white;
   box-shadow: 0 3px #999;
   outline: none;
+  transition: color 0.2s; /* disabled */
+  white-space: nowrap;
 }
 
 button:hover, button:active {
@@ -43,4 +46,23 @@ button.default:active {
 
 button .icon {
   margin-right: 10px;
+}
+
+button.small {
+  padding: 6px 12px;
+}
+
+button.small .icon {
+  margin-right: 6px;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  color: #bbb;
+  background-color: #e6e6e6;
+  box-shadow: 0 3px #ccc;
+  cursor: default;
+  transition-duration: 0.2s;
+  top: 0; /* patch for weird behaviour when :active */
 }

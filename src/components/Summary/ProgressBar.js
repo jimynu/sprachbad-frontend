@@ -28,10 +28,10 @@ class ProgressBar extends Component {
            </div>
           <div className="learning" style={{ width: this.state.learning + '%' }} >
             { this.state.learning > 15 && '◡‿◡' }
-            </div>
+          </div>
           <div className="mastered" style={{ width: this.state.mastered + '%' }} >
             { this.state.mastered > 15 && '^‿^' }
-            </div>
+          </div>
         </div>
     );
   }

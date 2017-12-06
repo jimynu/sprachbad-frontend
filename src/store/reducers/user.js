@@ -1,25 +1,35 @@
 import {
   SET_MY_LEXEMES,
+  REMOVE_FROM_MY_LEXEMES,
   SAVE_SUCCESS,
+  SET_USER,
 } from '../actions';
 
 
-export const userReducer = (state = {}, action) => {
+export const userReducer = (state = { lexemes: [] }, action) => {
   switch(action.type) {
 
     case SET_MY_LEXEMES: {
       const newState = { ...state };
-      newState.lexemes = action.payload;
-      return newState;
+      const lexemes = [ ...newState.lexemes, ...action.payload ]
+      newState.lexemesLoaded = true; // necessary because ".length==0" could also mean they are fetched but user hasn't chosen any
+      return { ...newState, lexemes };
+    }
+
+    case REMOVE_FROM_MY_LEXEMES: {
+      const newState = { ...state };
+      const lexemes = [ ...newState.lexemes ].filter( ({ lexeme }) => {
+        return lexeme._id !== action.payload;
+      });
+      return { ...newState, lexemes };
     }
 
     case SAVE_SUCCESS: {
-      if ( !state.lexemes ) return state; // not yet fetched
+      if ( !state.lexemesLoaded ) return state; // not yet fetched
 
       const newState = { ...state };
 
-      return newState.lexemes.map( (lexeme) => {
-
+      const lexemes = newState.lexemes.map( (lexeme) => {
         if (lexeme._id === action.payload.lexemeId) {
           if (action.payload.success) {
             lexeme.correctAnswers++;
@@ -32,32 +42,12 @@ export const userReducer = (state = {}, action) => {
         return lexeme;
       });
 
+      return { ...newState, lexemes };
+    }
 
-
-      // const lexemes = { ...newState.lexemes };
-
-
-      // const currentLexeme = newState.lexemes.find( ({_id}) => _id === action.payload.lexemeId )
-      //
-      //   if (action.payload.success) {
-      //     currentLexeme.correctAnswers++;
-      //     currentLexeme.progress ++;
-      //   } else {
-      //     currentLexeme.wrongAnswers++;
-      //     currentLexeme.progress =/ 2;
-      //   }
-
-
-
-
-      // const currentSentence = { ...newState.lexemes[] };
-      // currentSentence.success = action.payload.success;
-      //
-      // const lexemes = { ...state.lexemes };
-      // const lexemes.map( lexeme => {
-      //   lexeme.progress
-      // });
-      // newState.lexemes = lexemes;
+    case SET_USER: {
+      const { _id: id, name, newbie, level } = action.payload;
+      return { ...state, id, name, newbie, level };
     }
 
     default:

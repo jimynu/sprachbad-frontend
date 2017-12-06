@@ -23,7 +23,7 @@ export const reportSuccess = (lexemeId, success, wrongAnswer, user = DEFAULT_USE
 
   return fetch(url, params)
     .then( response => response.ok
-       ? saveSuccess( lexemeId, success, wrongAnswer )
+       ? saveSuccess( lexemeId, success, wrongAnswer ) // saved to bath and user
        : {message: 'error: ' + response.status}
       )
     .catch( error => { } );

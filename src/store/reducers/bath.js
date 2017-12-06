@@ -9,19 +9,19 @@ export const bathReducer = (state = { current: -1 }, action) => {
   switch(action.type) {
 
     case SET_SENTENCES: {
-      const newBath = {};
-      newBath.current = 0;
-      newBath.sentences = action.payload;
-      newBath.progress = { correct: 0, wrong: 0, total: newBath.sentences.length };
+      const newState = {}; // replaces old bath!
+      newState.current = 0;
+      newState.sentences = action.payload;
+      newState.progress = { correct: 0, wrong: 0, total: newState.sentences.length };
 
-      const sentences = [ ...newBath.sentences ];
+      const sentences = [ ...newState.sentences ];
       sentences.map( sentence => {
         const task = { ...sentence.task }
         const { q, a } = task;
 
-        const pos = q.indexOf(' ' + a + ' ');
+        const pos = q.indexOf(a);
         const left = q.substring( 0, pos );
-        const right = q.substring( pos + a.length + 2 );
+        const right = q.substring( pos + a.length );
 
         const qSplit = [left, right];
 
@@ -29,7 +29,7 @@ export const bathReducer = (state = { current: -1 }, action) => {
         return sentence;
       })
 
-      return newBath;
+      return newState;
     }
 
     case SAVE_SUCCESS: {
@@ -59,7 +59,6 @@ export const bathReducer = (state = { current: -1 }, action) => {
       const newState = { ...state };
       newState.current = -1;
       return newState;
-
     }
 
     // case REMOVE_REVIEW: {

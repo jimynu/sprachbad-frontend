@@ -11,18 +11,14 @@ class BathContainer extends Component {
   componentDidMount() {
     runBath()
       .then( bath => {
-        if (bath) return this.props.dispatch(bath)
-      })
+        if (bath) this.props.dispatch(bath)
+      });
   }
 
   checkAnswer = (success, answer) => {
     reportSuccess(this.props.lexemeId, success, answer)
       .then(action => {
-        if (action.payload) {
-          this.props.dispatch( action );
-        } else {
-          this.setState({ message: action.message });
-        }
+        if (action.payload) this.props.dispatch( action );
       })
   }
 
@@ -54,11 +50,6 @@ const mapStateToProps = (state, props) => {
 
   else {
     const sentence = state.bath.sentences[state.bath.current];
-    //
-    // const pos = sentence.task.q.indexOf(' ' + sentence.task.a + ' ');
-    // const left = sentence.task.q.substring( 0, pos );
-    // const right = sentence.task.q.substring( pos + sentence.task.a.length + 2 );
-
     const { correct, wrong, total } = state.bath.progress
 
     return {
