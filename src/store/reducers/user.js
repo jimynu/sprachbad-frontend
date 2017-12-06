@@ -1,5 +1,5 @@
 import {
-  SET_MY_LEXEMES,
+  ADD_TO_MY_LEXEMES,
   REMOVE_FROM_MY_LEXEMES,
   SAVE_SUCCESS,
   SET_USER,
@@ -9,7 +9,7 @@ import {
 export const userReducer = (state = { lexemes: [] }, action) => {
   switch(action.type) {
 
-    case SET_MY_LEXEMES: {
+    case ADD_TO_MY_LEXEMES: {
       const newState = { ...state };
       const lexemes = [ ...newState.lexemes, ...action.payload ]
       newState.lexemesLoaded = true; // necessary because ".length==0" could also mean they are fetched but user hasn't chosen any
@@ -29,8 +29,8 @@ export const userReducer = (state = { lexemes: [] }, action) => {
 
       const newState = { ...state };
 
-      const lexemes = newState.lexemes.map( (lexeme) => {
-        if (lexeme._id === action.payload.lexemeId) {
+      const lexemes = newState.lexemes.map( lexeme => {
+        if (lexeme.lexeme._id === action.payload.lexemeId) {
           if (action.payload.success) {
             lexeme.correctAnswers++;
             lexeme.progress ++;

@@ -21,9 +21,9 @@ export const resetCurrent = {
 
 /*** USER ***/
 
-export const SET_MY_LEXEMES = 'setMyLexemes';
-export const setMyLexemes = (lexemes) => ({
-  type: SET_MY_LEXEMES,
+export const ADD_TO_MY_LEXEMES = 'addToMyLexemes';
+export const addToMyLexemes = (lexemes) => ({
+  type: ADD_TO_MY_LEXEMES,
   payload: lexemes
 });
 
@@ -38,6 +38,8 @@ export const setUser = (user) => ({
   type: SET_USER,
   payload: user
 });
+
+
 
 /*** LEXEMES ***/
 export const SET_LEXEMES = 'setLexemes';
