@@ -39,8 +39,6 @@ export const setUser = (user) => ({
   payload: user
 });
 
-
-
 /*** LEXEMES ***/
 export const SET_LEXEMES = 'setLexemes';
 export const setLexemes = (lexemes) => ({
