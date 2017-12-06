@@ -46,8 +46,15 @@ class SummaryContainer extends Component {
 
 
 const mapStateToProps = (state, props) => {
-  if ( state.user.lexemesLoaded ) {
-    const lexemes = state.user.lexemes;
+  console.log(state);
+  if ( state.user.lexemesLoaded && state.user.id ) {
+
+    console.log(state.user.lexemes);
+
+    // exclude lexemes that don't have tasks for selected level
+    const desiredLevel = `level${state.user.level}tasks`;
+    const lexemes = state.user.lexemes.filter( ({ lexeme }) => lexeme[desiredLevel]);
+    
     const myLexemes = {
       lexemes,
       poor: lexemes.filter( ({ progress }) => progress <= 1 ).length,

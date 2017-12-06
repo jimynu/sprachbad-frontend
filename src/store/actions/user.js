@@ -1,5 +1,5 @@
 import {
-  setMyLexemes,
+  addToMyLexemes,
   removeFromMyLexemes,
   setUser,
 } from './index.js';
@@ -7,16 +7,6 @@ import {
 import API_BASE_URL from '../../resources/API_URL';
 import DEFAULT_USER from '../../resources/defaultUser';
 
-
-export const fetchMyLexemes = (user = DEFAULT_USER) => {
-  const url = `${API_BASE_URL}/user/${user}/lexemes`;
-  const params = { method: 'GET' }
-
-  return fetch(url, params)
-    .then( response => response.json() )
-    .then( lexemes => setMyLexemes( lexemes ) )
-    .catch( error => { } );
-}
 
 export const fetchUser = (user = DEFAULT_USER) => {
   const url = `${API_BASE_URL}/user/${user}`;
@@ -46,13 +36,26 @@ export const changeLevel = (level, user = DEFAULT_USER) => {
     .catch( error => { } );
 }
 
+
+/*** USER'S CHOSEN LEXEMES ***/
+
+export const fetchMyLexemes = (user = DEFAULT_USER) => {
+  const url = `${API_BASE_URL}/user/${user}/lexemes`;
+  const params = { method: 'GET' }
+
+  return fetch(url, params)
+    .then( response => response.json() )
+    .then( lexemes => addToMyLexemes( lexemes ) )
+    .catch( error => { } );
+}
+
 export const addToBath = (lexemeId, user = DEFAULT_USER) => {
   const url = `${API_BASE_URL}/user/${user}/lexemes/add/${lexemeId}`;
   const params = { method: 'PUT' }
 
   return fetch(url, params)
     .then( response => response.json() )
-    .then( lexeme => setMyLexemes([lexeme]) )
+    .then( lexeme => addToMyLexemes([lexeme]) )
     .catch( error => { } );
 }
 
