@@ -52,6 +52,7 @@ class Bath extends Component {
             <h1>
               { q[0] }
               <input type="text"
+                autoFocus
                 maxLength={ a.length }
                 style={{ width: a.length + 0.1 + 'ch' }}
                 className={ this.state.submitted ? this.state.result : '' }

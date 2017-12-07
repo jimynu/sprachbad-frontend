@@ -24,7 +24,7 @@ class BathContainer extends Component {
 
   render() {
 
-    if (this.props.done) {
+    if (this.props.finished) {
       setTimeout( () => { this.props.history.push('/summary'); }, 100);
     }
 
@@ -32,9 +32,7 @@ class BathContainer extends Component {
     return (
       <div className="App">
         <Header />
-        <div style={{textAlign: 'center'}}>
         { q &&  <Bath q={ q } a={ a } checkAnswer={ this.checkAnswer } /> }
-        </div>
         <BathProgress correct={ correctPercent } wrong={ wrongPercent } />
       </div>
     );
@@ -44,8 +42,8 @@ class BathContainer extends Component {
 const mapStateToProps = (state, props) => {
   if ( state.bath.current === -1 ) return {}; // not ready yet
 
-  else if ( state.bath.current >= state.bath.sentences.length ) {
-    return {done: true}; // finished
+  else if ( state.bath.finished ) {
+    return {finished: true};
   }
 
   else {

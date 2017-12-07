@@ -3,6 +3,7 @@ import './index.css';
 import { connect } from 'react-redux';
 import { fetchMyLexemes, addToBath, removeFromBath } from '../../store/actions/user';
 import { fetchLexemes } from '../../store/actions/lexemes';
+import { Link } from 'react-router-dom';
 
 
 class Words extends Component {
@@ -68,7 +69,7 @@ class Words extends Component {
       .then( (action) => {
         this.props.dispatch(action)
         this.checkIfExactlyOneResult();
-      } );
+      });
   }
 
   render() {
@@ -81,6 +82,10 @@ class Words extends Component {
           </div>
           <div className="rightCol">
             These are the words you&#39;ve chosen.
+            { this.props.chosenLexemes.length > 0 &&
+              <Link to="bath"><button className="default" style={{ marginLeft: 15 + 'px' }}>learn!</button></Link>
+            }
+
             <div className="chosen-words">
 
               { this.props.chosenLexemes

@@ -12,7 +12,7 @@ class SettingsContainer extends Component {
     // here would be checked if user is logged in (or in localStorage)
     fetchUser()
       .then( action => {
-        if (action.payload._id) this.props.dispatch(action);
+        if (action && action.payload._id) this.props.dispatch(action);
       });
   }
 
