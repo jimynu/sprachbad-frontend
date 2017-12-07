@@ -52,6 +52,8 @@ export const bathReducer = (state = { current: -1 }, action) => {
       newState.current++;
       newState.progress = progress;
 
+      if (newState.current === newState.sentences.length) newState.finished = true;
+
       return newState;
     }
 
@@ -60,21 +62,6 @@ export const bathReducer = (state = { current: -1 }, action) => {
       newState.current = -1;
       return newState;
     }
-
-    // case REMOVE_REVIEW: {
-    //   const newState = { ...state };
-    //   const newReviewState = [ ...newState[action.restaurantId].reviews ];
-    //   const deletedReviewId = parseInt( action.reviewId, 10 );
-    //
-    //   newState[action.restaurantId].reviews = newReviewState.filter( review => {
-    //     return review.id !== deletedReviewId;
-    //   });;
-    //
-    //   return newState;
-    // }
-    //
-    //   return newState;
-    // }
 
     default:
       return state;
