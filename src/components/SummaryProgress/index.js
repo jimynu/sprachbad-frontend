@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import * as TranslateLevels from '../../resources/translateLevels';
 
 
-class Progress extends Component {
+class SummaryProgress extends Component {
   render() {
     const { lexemes, poor, learning, mastered } = this.props.lexemes;
     const lexemeCount = lexemes.length;
@@ -37,4 +37,4 @@ class Progress extends Component {
   }
 }
 
-export default Progress;
+export default SummaryProgress;

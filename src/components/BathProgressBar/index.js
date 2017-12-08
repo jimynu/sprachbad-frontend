@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 
-const Bath = ({correct, wrong}) => {
+const BathProgressBar = ({ correct, wrong }) => {
   return (
     <div className="BathProgress">
       <div className="correctAnswers" style={{ width: correct + '%' }} />
@@ -11,4 +11,4 @@ const Bath = ({correct, wrong}) => {
   )
 }
 
-export default Bath;
+export default BathProgressBar;

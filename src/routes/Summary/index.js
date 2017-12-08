@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import Summary from '../../components/Summary';
+import Recap from '../../components/SummaryRecap';
+import Progress from '../../components/SummaryProgress';
+
 import { resetCurrent } from '../../store/actions';
 import { fetchMyLexemes, fetchUser } from '../../store/actions/user';
 import { connect } from 'react-redux';
@@ -27,19 +28,18 @@ class SummaryContainer extends Component {
 
   render() {
     return (
-      <div>
         <div className="App">
           <Header title="Summary" />
           { this.props.myLexemes && this.props.user.id &&
-            <Summary
-              lexemes={ this.props.myLexemes }
-              level={ this.props.user.level }
-              showRecap={ this.props.showRecap }
-            />
+
+            <div className="Summary">
+              { this.props.showRecap &&
+                <Recap bath={ this.props.bath } />
+              }
+              <Progress lexemes={ this.props.myLexemes } level={ this.props.user.level } />
+            </div>
           }
         </div>
-        <Footer />
-      </div>
     );
   }
 }
@@ -65,6 +65,7 @@ const mapStateToProps = (state, props) => {
       showRecap: state.bath.finished,
       userLexemesLoaded: state.user.lexemesLoaded,
       user: state.user,
+      bath: state.bath,
     };
   }
 

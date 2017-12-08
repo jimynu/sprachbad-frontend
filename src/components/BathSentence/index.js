@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 
 
-class Bath extends Component {
+class BathSentence extends Component {
 
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ class Bath extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const givenAnswer = this.state.answer;
+    const givenAnswer   = this.state.answer;
     const correctAnswer = this.props.a;
 
     if ( givenAnswer === '' ) return;
@@ -71,4 +71,4 @@ class Bath extends Component {
   }
 }
 
-export default Bath;
+export default BathSentence;

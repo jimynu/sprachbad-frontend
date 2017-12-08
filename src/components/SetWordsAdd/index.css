@@ -1,0 +1,26 @@
+.Words .filter {
+  padding-bottom: 30px;
+}
+
+.Words .add {
+  padding: 30px;
+}
+
+.Words .add input[type="text"] {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #222;
+  font-size: 20px;
+  font-weight: 300;
+  border: 0;
+  border-bottom: 1px solid #69A6CE;
+  outline: none;
+}
+
+.Words .add input[type="text"]::placeholder {
+  color: #bbb;
+}
+
+.Words .add .suggested-words .word {
+  cursor: pointer;
+  background-color: #D9E8F2;
+}
