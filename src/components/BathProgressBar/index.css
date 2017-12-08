@@ -1,0 +1,22 @@
+.BathProgress {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1vh;
+}
+
+.BathProgress .correctAnswers {
+  background-color: #6CC17A;
+  float: left;
+  height: 100%;
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+}
+
+.BathProgress .wrongAnswers {
+  background-color: #CD0E0E;
+  float: right;
+  height: 100%;
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+}

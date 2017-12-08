@@ -1,0 +1,27 @@
+.Level {
+  padding: 30px;
+  background-color: #D9E8F2;
+  transition-duration: 0.4s;
+  overflow: hidden;
+}
+
+.Level ul {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.Level ul li {
+  margin-top: 10px;
+}
+
+.Level input[type="radio"] {
+  margin-right: 10px;
+  position: relative;
+  top: -2px;
+}
+
+.Level ul li p {
+  margin-top: 0px;
+  margin-left: 25px;
+}

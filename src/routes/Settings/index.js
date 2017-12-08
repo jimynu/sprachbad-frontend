@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header';
-import Level from '../../components/Settings/Level';
-import Words from '../../components/Settings/Words';
+import SetLevel from '../../components/SetLevel';
+import SetWords from '../../containers/SetWords';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../store/actions/user';
 
 
-class SettingsContainer extends Component {
+class Settings extends Component {
 
   componentDidMount() {
     // here would be checked if user is logged in (or in localStorage)
@@ -23,11 +23,10 @@ class SettingsContainer extends Component {
         {
           this.props.user.id &&
           <span>
-            <Level location={ this.props.location } />
-            <Words />
+            <SetLevel location={ this.props.location } />
+            <SetWords />
           </span>
         }
-
       </div>
     );
   }
@@ -35,9 +34,10 @@ class SettingsContainer extends Component {
 
 
 const mapStateToProps = (state) => {
+
   return {
     user: state.user
   };
 }
 
-export default connect(mapStateToProps)(SettingsContainer);
+export default connect(mapStateToProps)(Settings);

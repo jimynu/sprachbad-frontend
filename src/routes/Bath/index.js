@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
-import Bath from '../../components/Bath';
-import BathProgress from '../../components/Bath/BathProgress';
+import BathSentence from '../../components/BathSentence';
+import BathProgressBar from '../../components/BathProgressBar';
 import { runBath, reportSuccess } from '../../store/actions/bath';
 
 
-class BathContainer extends Component {
+class Bath extends Component {
 
   componentDidMount() {
     runBath()
@@ -23,21 +23,22 @@ class BathContainer extends Component {
   }
 
   render() {
-
     if (this.props.finished) {
       setTimeout( () => { this.props.history.push('/summary'); }, 100);
     }
 
     const { q, a, wrongPercent, correctPercent } = this.props;
+
     return (
       <div className="App">
         <Header />
-        { q &&  <Bath q={ q } a={ a } checkAnswer={ this.checkAnswer } /> }
-        <BathProgress correct={ correctPercent } wrong={ wrongPercent } />
+        { q &&  <BathSentence q={ q } a={ a } checkAnswer={ this.checkAnswer } /> }
+        <BathProgressBar correct={ correctPercent } wrong={ wrongPercent } />
       </div>
     );
   }
 }
+
 
 const mapStateToProps = (state, props) => {
   if ( state.bath.current === -1 ) return {}; // not ready yet
@@ -61,4 +62,4 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-export default connect(mapStateToProps)(BathContainer);
+export default connect(mapStateToProps)(Bath);
