@@ -11,21 +11,16 @@ class SetWords extends Component {
 
   componentDidMount() {
     if ( !this.props.userLexemesLoaded ) {
-      fetchMyLexemes()
-        .then( (action) => this.props.dispatch(action) );
+      this.props.dispatch( fetchMyLexemes() );
     }
 
     if ( !this.props.lexemesLoaded ) {
-      fetchLexemes()
-        .then( (action) => this.props.dispatch(action) );
+      this.props.dispatch( fetchLexemes() );
     }
   }
 
   handleRemove = (event) => {
-    removeFromBath(event.currentTarget.id)
-      .then( (action) => {
-        this.props.dispatch(action)
-      });
+    this.props.dispatch( removeFromBath(event.currentTarget.id) );
   }
 
   render() {

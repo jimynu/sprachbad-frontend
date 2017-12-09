@@ -13,6 +13,7 @@ import Bath from './routes/Bath';
 import Settings from './routes/Settings';
 import Summary from './routes/Summary';
 import About from './routes/About';
+import Login from './routes/Login';
 
 
 ReactDOM.render(
@@ -20,6 +21,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/" component={ Summary } />
+        <Route exact path="/login" component={ Login } />
         <Route exact path="/summary" component={ Summary } />
         <Route exact path="/settings" component={ Settings } />
         <Route exact path="/bath" component={ Bath } />

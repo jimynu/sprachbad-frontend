@@ -1,0 +1,11 @@
+.LoggedInUser {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+.LoggedInUser span {
+  margin-right: 6px;
+  position: relative;
+  top: 1px;
+}

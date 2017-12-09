@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../../components/Header';
 import Recap from '../../components/SummaryRecap';
 import Progress from '../../components/SummaryProgress';
+import LoggedInUser from '../../components/LoggedInUser';
 
 import { resetCurrent } from '../../store/actions';
 import { fetchMyLexemes, fetchUser } from '../../store/actions/user';
@@ -13,26 +14,39 @@ class SummaryContainer extends Component {
   componentDidMount() {
     this.props.dispatch(resetCurrent); // reset "pointer" of current task in learning session
 
-    if ( !this.props.userLexemesLoaded ) {
-      fetchMyLexemes()
-        .then( (action) => this.props.dispatch(action) );
+    if ( !this.props.user.id ) {
+      //local storage or -> login
+      const tokenFromLocalStorage = localStorage.getItem('token');
+      if ( tokenFromLocalStorage ) {
+        this.props.dispatch( fetchUser(tokenFromLocalStorage) )
+          .then( () => {
+            this.props.dispatch( fetchMyLexemes() );
+          });
+      } else {
+        this.props.history.push('/login')
+      }
     }
 
-    if ( !this.props.user ) {
-      fetchUser()
-        .then( action => {
-          if (action.payload._id) this.props.dispatch(action);
-        });
+    if ( this.props.user.id && !this.props.userLexemesLoaded ) {
+      this.props.dispatch( fetchMyLexemes() );
     }
+
+  }
+
+  renderTitle() {
+    if ( this.props.location.pathname === '/summary' ) return 'Summary';
+    if ( this.props.user.id && this.props.location.pathname === '/' ) return 'Welcome back!';
+    return 'Logging in...';
   }
 
   render() {
     return (
         <div className="App">
-          <Header title="Summary" />
+          <Header title={ this.renderTitle() } />
           { this.props.myLexemes && this.props.user.id &&
 
             <div className="Summary">
+              <LoggedInUser username={this.props.user.name} />
               { this.props.showRecap &&
                 <Recap bath={ this.props.bath } />
               }
@@ -45,7 +59,7 @@ class SummaryContainer extends Component {
 }
 
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
 
   if ( state.user.lexemesLoaded && state.user.id ) {
 
@@ -69,7 +83,7 @@ const mapStateToProps = (state, props) => {
     };
   }
 
-  return {};
+  return { user: state.user };
 }
 
 export default connect(mapStateToProps)(SummaryContainer);

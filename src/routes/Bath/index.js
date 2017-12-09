@@ -3,23 +3,30 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import BathSentence from '../../components/BathSentence';
 import BathProgressBar from '../../components/BathProgressBar';
+import { fetchUser } from '../../store/actions/user';
 import { runBath, reportSuccess } from '../../store/actions/bath';
 
 
 class Bath extends Component {
 
   componentDidMount() {
-    runBath()
-      .then( bath => {
-        if (bath) this.props.dispatch(bath)
-      });
+    if ( this.props.user.id ) {
+      this.props.dispatch(runBath());
+      return;
+    }
+
+    // no user in state
+    const tokenFromLocalStorage = localStorage.getItem('token');
+    if ( tokenFromLocalStorage ) {
+      this.props.dispatch( fetchUser(tokenFromLocalStorage) )
+        .then( () => this.props.dispatch(runBath()) )
+    } else {
+      this.props.history.push('/login')
+    }
   }
 
   checkAnswer = (success, answer) => {
-    reportSuccess(this.props.lexemeId, success, answer)
-      .then(action => {
-        if (action.payload) this.props.dispatch( action );
-      })
+    this.props.dispatch( reportSuccess(this.props.lexemeId, success, answer) );
   }
 
   render() {
@@ -41,10 +48,11 @@ class Bath extends Component {
 
 
 const mapStateToProps = (state, props) => {
-  if ( state.bath.current === -1 ) return {}; // not ready yet
+  console.log(state);
+  if ( state.bath.current === -1 ) return { user: state.user }; // not ready yet
 
   else if ( state.bath.finished ) {
-    return {finished: true};
+    return { user: state.user, finished: true };
   }
 
   else {
@@ -52,6 +60,7 @@ const mapStateToProps = (state, props) => {
     const { correct, wrong, total } = state.bath.progress
 
     return {
+      user: state.user,
       lexeme: sentence.lexeme,
       lexemeId: sentence.lexemeId,
       a: sentence.task.a,

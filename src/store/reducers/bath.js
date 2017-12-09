@@ -2,6 +2,7 @@ import {
   SET_SENTENCES,
   SAVE_SUCCESS,
   RESET_CURRENT,
+  NEXT_SENTENCE,
 } from '../actions';
 
 
@@ -32,29 +33,33 @@ export const bathReducer = (state = { current: -1 }, action) => {
       return newState;
     }
 
+    case NEXT_SENTENCE: {
+      const newState = { ...state };
+      newState.current++;
+      if (newState.current === newState.sentences.length) newState.finished = true;
+      return newState;
+    }
+
     case SAVE_SUCCESS: {
       const newState = { ...state };
       const progress = { ...state.progress };
 
-      const currentSentence = { ...newState.sentences[newState.current] };
-      currentSentence.success = action.payload.success;
+      const sentences = newState.sentences.map( lexeme => {
+        if (lexeme.lexemeId === action.payload.lexemeId) {
+          if (action.payload.success) {
+            lexeme.correctAnswers++;
+            progress.correct++;
+          } else {
+            lexeme.wrongAnswers++;
+            lexeme.answer = action.payload.wrongAnswer;
+            progress.wrong++;
+          }
+        }
+        lexeme.success = action.payload.success;
+        return lexeme;
+      });
 
-      if (action.payload.success) {
-        currentSentence.correctAnswers++;
-        progress.correct++;
-      } else {
-        currentSentence.wrongAnswers++;
-        currentSentence.answer = action.payload.wrongAnswer;
-        progress.wrong++;
-      }
-
-      newState.sentences[newState.current] = currentSentence;
-      newState.current++;
-      newState.progress = progress;
-
-      if (newState.current === newState.sentences.length) newState.finished = true;
-
-      return newState;
+      return { ...newState, sentences, progress };
     }
 
     case RESET_CURRENT: {

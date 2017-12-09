@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
+import { nextSentence } from '../../store/actions';
+import { connect } from 'react-redux';
 
 
 class BathSentence extends Component {
@@ -37,9 +39,11 @@ class BathSentence extends Component {
       this.setState({ submitted: true, result: 'wrong', correction: correctAnswer });
     }
 
-    setTimeout( (sucess) => {
-      this.props.checkAnswer( success, givenAnswer );
+    this.props.checkAnswer( success, givenAnswer );
+
+    setTimeout( () => {
       this.setState( { answer: '', submitted: false, result: '', correction: '' } );
+      this.props.dispatch(nextSentence);
     }, 1200);
   }
 
@@ -71,4 +75,4 @@ class BathSentence extends Component {
   }
 }
 
-export default BathSentence;
+export default connect()(BathSentence);

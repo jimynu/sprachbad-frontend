@@ -13,13 +13,20 @@ export const saveSuccess = (lexemeId, success, wrongAnswer) => ({
 });
 
 export const RESET_CURRENT = 'resetCurrent';
-export const resetCurrent = {
-  type: RESET_CURRENT
-};
+export const resetCurrent = { type: RESET_CURRENT };
+
+export const NEXT_SENTENCE = 'nextSentence';
+export const nextSentence = { type: NEXT_SENTENCE };
 
 
 
 /*** USER ***/
+
+export const CREATE_SESSION = 'createSession';
+export const createSession = (user) => ({
+  type: CREATE_SESSION,
+  payload: user
+});
 
 export const ADD_TO_MY_LEXEMES = 'addToMyLexemes';
 export const addToMyLexemes = (lexemes) => ({
