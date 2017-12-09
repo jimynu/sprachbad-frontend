@@ -48,12 +48,13 @@ class BathSentence extends Component {
   }
 
   render() {
-    const {q, a} = this.props;
+    const { q, a, img } = this.props;
     return (
       <div className="Bath">
         <form onSubmit={ this.handleSubmit }>
           <div className={ this.state.submitted ? 'sentence fadeOut' : 'sentence' } >
             <h1>
+              { img && <img src={ img } alt="" /> }
               { q[0] }
               <input type="text"
                 autoFocus

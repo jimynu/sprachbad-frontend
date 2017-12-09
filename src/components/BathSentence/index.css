@@ -63,6 +63,13 @@
   caret-color: #f5cece;
 }
 
+.Bath .sentence img {
+  display: block;
+  margin: 0 auto 30px;
+  max-width: 100%;
+  max-height: 50vh;;
+}
+
 
 
 /* FEEDBACK BOX */

@@ -34,12 +34,12 @@ class Bath extends Component {
       setTimeout( () => { this.props.history.push('/summary'); }, 100);
     }
 
-    const { q, a, wrongPercent, correctPercent } = this.props;
+    const { q, a, img, wrongPercent, correctPercent } = this.props;
 
     return (
       <div className="App">
         <Header />
-        { q &&  <BathSentence q={ q } a={ a } checkAnswer={ this.checkAnswer } /> }
+        { q &&  <BathSentence q={ q } a={ a } img={ img } checkAnswer={ this.checkAnswer } /> }
         <BathProgressBar correct={ correctPercent } wrong={ wrongPercent } />
       </div>
     );
@@ -65,6 +65,7 @@ const mapStateToProps = (state, props) => {
       lexemeId: sentence.lexemeId,
       a: sentence.task.a,
       q: sentence.task.q,
+      img: sentence.task.img,
       correctPercent: correct / total * 100,
       wrongPercent: wrong / total * 100,
     };
