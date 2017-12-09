@@ -37,11 +37,7 @@ class Level extends Component {
     this.setState({ collapsed: true });
 
     const levelNum = TranslateLevels.strToNum(this.state.newLevel)
-
-    changeLevel(levelNum)
-      .then( action => {
-        if (action.payload._id) this.props.dispatch(action);
-      });
+    this.props.dispatch( changeLevel(levelNum) );
   }
 
   handleCancel = () => {

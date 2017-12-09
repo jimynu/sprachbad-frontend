@@ -34,8 +34,7 @@ class SetWordsAdd extends Component {
 
   handleSubmit = (event) => { // clicked "add"
     event.preventDefault();
-    addToBath(this.state.foundLexeme.id)
-      .then( (action) => this.props.dispatch(action) );
+    this.props.dispatch( addToBath(this.state.foundLexeme.id) );
 
     this.setState({
       exactlyOneResult: false,
@@ -46,18 +45,15 @@ class SetWordsAdd extends Component {
   }
 
   handleAdd = (event) => { // clicked lexeme
-    addToBath(event.currentTarget.id)
-      .then( (action) => {
-        if(!action.payload[0].error) this.props.dispatch(action);
-        this.checkIfExactlyOneResult();
-      } );
+    this.props.dispatch( addToBath(event.currentTarget.id) )
+      .then( () => this.checkIfExactlyOneResult() );
   }
 
   render() {
     return (
       <div className="add">
         <div className="leftCol">
-          <h2>Add Words</h2>
+          <h2>Add to Bath</h2>
         </div>
         <div className="rightCol">
 

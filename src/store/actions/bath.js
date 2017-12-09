@@ -4,53 +4,32 @@ import {
 } from './index.js';
 
 import API_BASE_URL from '../../resources/API_URL';
-import DEFAULT_USER from '../../resources/defaultUser';
 
 
-export const runBath = (user = DEFAULT_USER) => {
-  const url = `${API_BASE_URL}/user/${user}/lexemes/10`;
-  const params = { method: 'GET' }
+export const runBath = () => (dispatch, getState) => {
+  const url = `${API_BASE_URL}/user/myId/lexemes/10`;
+  const params = {
+    method: 'GET',
+    headers: { 'Authorization': 'Bearer ' + getState().user.token }
+  }
 
   return fetch(url, params)
     .then( response => response.json() )
-    .then( sentences => setSentences( sentences ) )
+    .then( sentences => dispatch(setSentences(sentences)) )
     .catch( error => { } );
 }
 
-export const reportSuccess = (lexemeId, success, wrongAnswer, user = DEFAULT_USER) => {
-  const url = `${API_BASE_URL}/user/${user}/lexemes/${lexemeId}/${success?'correct':'wrong'}`;
-  const params = { method: 'PUT' }
+export const reportSuccess = (lexemeId, success, wrongAnswer) => (dispatch, getState) => {
+  const url = `${API_BASE_URL}/user/myId/lexemes/${lexemeId}/${success?'correct':'wrong'}`;
+  const params = {
+    method: 'PUT',
+    headers: { 'Authorization': 'Bearer ' + getState().user.token }
+  }
 
   return fetch(url, params)
     .then( response => response.ok
-       ? saveSuccess( lexemeId, success, wrongAnswer ) // saved to bath and user
-       : {message: 'error: ' + response.status}
+      ? dispatch(saveSuccess( lexemeId, success, wrongAnswer )) // saved to bath and user
+      : {message: 'error: ' + response.status}
       )
     .catch( error => { } );
 }
-
-
-
-
-
-// model
-
-// export const runBath = (user = DEFAULT_USER) => {
-//   const url = API_BASE_URL + 'user/' + user + '/lexemes/10';
-//   const params = {
-//     method: 'GET',
-//     headers: {
-//       'Content-type': 'application/json',
-//       'Authorization': 'Bearer ' + token
-//     },
-//     body: JSON.stringify({
-//       "rating": rating,
-//       "text": text
-//     })
-//   }
-//
-//   return fetch(url, params)
-//     .then( response => response.json() )
-//     .then( bath => runBathAction( bath ) )
-//     .catch( error => { } );
-// }

@@ -1,4 +1,5 @@
 import {
+  CREATE_SESSION,
   ADD_TO_MY_LEXEMES,
   REMOVE_FROM_MY_LEXEMES,
   SAVE_SUCCESS,
@@ -8,6 +9,21 @@ import {
 
 export const userReducer = (state = { lexemes: [] }, action) => {
   switch(action.type) {
+
+    case CREATE_SESSION: {
+      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('id', action.payload._id);
+      localStorage.setItem('name', action.payload.name);
+      localStorage.setItem('level', action.payload.level);
+
+      return {
+        token: action.payload.token,
+        id: action.payload._id,
+        name: action.payload.name,
+        level: action.payload.level,
+        lexemes: []
+      };
+    }
 
     case ADD_TO_MY_LEXEMES: {
       const newState = { ...state };
