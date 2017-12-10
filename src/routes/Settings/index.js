@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import SetLevel from '../../components/SetLevel';
 import SetWords from '../../containers/SetWords';
 import LoggedInUser from '../../components/LoggedInUser';
+import Menu from '../../components/Menu';
 
 import { connect } from 'react-redux';
 import { fetchUser } from '../../store/actions/user';
@@ -26,6 +27,7 @@ class Settings extends Component {
     return (
       <div className="App">
         <Header title="Settings" />
+        <Menu not="settings" />
         {
           this.props.user.id &&
           <span>

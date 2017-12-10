@@ -5,6 +5,7 @@ import BathSentence from '../../components/BathSentence';
 import BathProgressBar from '../../components/BathProgressBar';
 import { fetchUser } from '../../store/actions/user';
 import { runBath, reportSuccess } from '../../store/actions/bath';
+import Menu from '../../components/Menu';
 
 
 class Bath extends Component {
@@ -39,6 +40,7 @@ class Bath extends Component {
     return (
       <div className="App">
         <Header />
+        <Menu />
         { q &&  <BathSentence q={ q } a={ a } img={ img } checkAnswer={ this.checkAnswer } /> }
         <BathProgressBar correct={ correctPercent } wrong={ wrongPercent } />
       </div>

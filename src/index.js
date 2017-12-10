@@ -14,6 +14,7 @@ import Settings from './routes/Settings';
 import Summary from './routes/Summary';
 import About from './routes/About';
 import Login from './routes/Login';
+import Logout from './routes/Logout';
 
 
 ReactDOM.render(
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/" component={ Summary } />
         <Route exact path="/login" component={ Login } />
+        <Route exact path="/logout" component={ Logout } />
         <Route exact path="/summary" component={ Summary } />
         <Route exact path="/settings" component={ Settings } />
         <Route exact path="/bath" component={ Bath } />

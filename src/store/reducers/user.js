@@ -4,6 +4,7 @@ import {
   REMOVE_FROM_MY_LEXEMES,
   SAVE_SUCCESS,
   SET_USER,
+  REMOVE_SESSION,
 } from '../actions';
 
 
@@ -23,6 +24,11 @@ export const userReducer = (state = { lexemes: [] }, action) => {
         level: action.payload.level,
         lexemes: []
       };
+    }
+
+    case REMOVE_SESSION: {
+      localStorage.clear();
+      return { lexemes: [] };
     }
 
     case ADD_TO_MY_LEXEMES: {

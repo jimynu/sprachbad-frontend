@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import Recap from '../../components/SummaryRecap';
 import Progress from '../../components/SummaryProgress';
 import LoggedInUser from '../../components/LoggedInUser';
+import Menu from '../../components/Menu';
 
 import { resetCurrent } from '../../store/actions';
 import { fetchMyLexemes, fetchUser } from '../../store/actions/user';
@@ -43,6 +44,7 @@ class SummaryContainer extends Component {
     return (
         <div className="App">
           <Header title={ this.renderTitle() } />
+          <Menu not="summary" />
           { this.props.myLexemes && this.props.user.id &&
 
             <div className="Summary">
