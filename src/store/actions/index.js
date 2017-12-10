@@ -28,6 +28,12 @@ export const createSession = (user) => ({
   payload: user
 });
 
+export const SET_USER = 'setUser';
+export const setUser = (user) => ({
+  type: SET_USER,
+  payload: user
+});
+
 export const ADD_TO_MY_LEXEMES = 'addToMyLexemes';
 export const addToMyLexemes = (lexemes) => ({
   type: ADD_TO_MY_LEXEMES,
@@ -40,11 +46,8 @@ export const removeFromMyLexemes = (lexemeId) => ({
   payload: lexemeId
 });
 
-export const SET_USER = 'setUser';
-export const setUser = (user) => ({
-  type: SET_USER,
-  payload: user
-});
+export const REMOVE_SESSION = 'removeSession';
+export const removeSession = { type: REMOVE_SESSION };
 
 
 

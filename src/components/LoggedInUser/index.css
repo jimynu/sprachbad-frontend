@@ -1,5 +1,21 @@
 .LoggedInUser {
   position: absolute;
+  right: 64px;
+  top: 35px;
+  color: #233745;
+  padding-right: 10px;
+  /*border-right: 1px solid #233745;*/
+}
+
+.LoggedInUser span {
+  margin-right: 6px;
+  position: relative;
+  top: 1px;
+}
+
+
+/*.LoggedInUser {
+  position: absolute;
   right: 30px;
   top: 30px;
 }
@@ -8,4 +24,4 @@
   margin-right: 6px;
   position: relative;
   top: 1px;
-}
+}*/
