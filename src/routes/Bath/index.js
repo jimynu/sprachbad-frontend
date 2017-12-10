@@ -50,7 +50,6 @@ class Bath extends Component {
 
 
 const mapStateToProps = (state, props) => {
-  console.log(state);
   if ( state.bath.current === -1 ) return { user: state.user }; // not ready yet
 
   else if ( state.bath.finished ) {
