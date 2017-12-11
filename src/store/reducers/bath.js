@@ -44,6 +44,8 @@ export const bathReducer = (state = { current: -1 }, action) => {
       const newState = { ...state };
       const progress = { ...state.progress };
 
+      console.log(action.payload);
+
       const sentences = newState.sentences.map( lexeme => {
         if (lexeme.lexemeId === action.payload.lexemeId) {
           if (action.payload.success) {
@@ -54,8 +56,8 @@ export const bathReducer = (state = { current: -1 }, action) => {
             lexeme.answer = action.payload.wrongAnswer;
             progress.wrong++;
           }
+          lexeme.success = action.payload.success;
         }
-        lexeme.success = action.payload.success;
         return lexeme;
       });
 

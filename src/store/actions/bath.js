@@ -20,6 +20,9 @@ export const runBath = () => (dispatch, getState) => {
 }
 
 export const reportSuccess = (lexemeId, success, wrongAnswer) => (dispatch, getState) => {
+  dispatch(saveSuccess( lexemeId, success, wrongAnswer ));  // saved to bath and user
+
+  // save to DB
   const url = `${API_BASE_URL}/user/myId/lexemes/${lexemeId}/${success?'correct':'wrong'}`;
   const params = {
     method: 'PUT',
@@ -27,9 +30,6 @@ export const reportSuccess = (lexemeId, success, wrongAnswer) => (dispatch, getS
   }
 
   return fetch(url, params)
-    .then( response => response.ok
-      ? dispatch(saveSuccess( lexemeId, success, wrongAnswer )) // saved to bath and user
-      : {message: 'error: ' + response.status}
-      )
+    .then( response => { if(!response.ok) console.error(response.status) } )
     .catch( error => { } );
 }
