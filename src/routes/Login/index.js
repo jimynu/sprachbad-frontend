@@ -7,7 +7,7 @@ import Menu from '../../components/Menu';
 const Login = () => {
   return (
     <div className="App">
-      <Header title="Login" />
+      <Header />
       <Menu only="about" />
       <LoginForm />
     </div>
