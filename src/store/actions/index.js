@@ -46,12 +46,17 @@ export const removeFromMyLexemes = (lexemeId) => ({
   payload: lexemeId
 });
 
+
+
+/*** ALL REDUCERS ***/
+
 export const REMOVE_SESSION = 'removeSession';
 export const removeSession = { type: REMOVE_SESSION };
 
 
 
 /*** LEXEMES ***/
+
 export const SET_LEXEMES = 'setLexemes';
 export const setLexemes = (lexemes) => ({
   type: SET_LEXEMES,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { login, fetchUser } from '../../store/actions/user';
+import { login, signup, fetchUser } from '../../store/actions/user';
 import './index.css';
 
 
@@ -13,6 +13,7 @@ class LoginForm extends Component {
       username: '',
       password: '',
       loginFailed: false,
+      message: '',
     }
   }
 
@@ -50,11 +51,25 @@ class LoginForm extends Component {
           // setTimeout( () => this.props.history.push('/'), 100)
           this.props.history.push('/')
         } else {
-          this.setState({ username: '', password: '', loginFailed: true });
+          this.setState({ username: '', password: '', loginFailed: true, message: '' });
           setTimeout( () => this.setState({ loginFailed: false }), 600);
         }
       })
       .catch( error => { } );
+  }
+
+  handleSignup = (event) => {
+    event.preventDefault();
+
+    if ( this.state.username.length < 3 || this.state.password.length < 6 ) {
+      this.setState({ message: 'Choose a username with at least 3 and a password with at least 6 characters.' });
+      return;
+    }
+
+    signup( this.state.username, this.state.password )
+      .then( message => {
+        this.setState({ message });
+      })
   }
 
   render() {
@@ -74,7 +89,13 @@ class LoginForm extends Component {
             Login
           </button>
 
+          <button onClick={ this.handleSignup } >
+            signup
+          </button>
+
         </form>
+
+        {this.state.message}
       </div>
     );
   }

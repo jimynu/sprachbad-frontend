@@ -3,6 +3,7 @@ import {
   SAVE_SUCCESS,
   RESET_CURRENT,
   NEXT_SENTENCE,
+  REMOVE_SESSION,
 } from '../actions';
 
 
@@ -44,8 +45,6 @@ export const bathReducer = (state = { current: -1 }, action) => {
       const newState = { ...state };
       const progress = { ...state.progress };
 
-      console.log(action.payload);
-
       const sentences = newState.sentences.map( lexeme => {
         if (lexeme.lexemeId === action.payload.lexemeId) {
           if (action.payload.success) {
@@ -68,6 +67,10 @@ export const bathReducer = (state = { current: -1 }, action) => {
       const newState = { ...state };
       newState.current = -1;
       return newState;
+    }
+
+    case REMOVE_SESSION: {
+      return { current: -1 };
     }
 
     default:

@@ -18,7 +18,11 @@
 
 .Login button {
   margin: 30px auto;
-  width: 300px;
+  width: 140px;
+}
+
+.Login button.default {
+  float: right;
 }
 
 .Login button.login-failed {

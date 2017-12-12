@@ -6,7 +6,7 @@ import LoggedInUser from '../../components/LoggedInUser';
 import Menu from '../../components/Menu';
 
 import { resetCurrent } from '../../store/actions';
-import { fetchMyLexemes, fetchUser } from '../../store/actions/user';
+import { fetchMyLexemes, fetchUser, dumpNewbieState } from '../../store/actions/user';
 import { connect } from 'react-redux';
 
 
@@ -36,6 +36,10 @@ class SummaryContainer extends Component {
 
   renderTitle() {
     if ( this.props.location.pathname === '/summary' ) return 'Summary';
+    if ( this.props.user.id && this.props.location.pathname === '/' && this.props.user.newbie  ) {
+      this.props.dispatch( dumpNewbieState() );
+      return 'Welcome to Sprachbad!';
+    }
     if ( this.props.user.id && this.props.location.pathname === '/' ) return 'Welcome back!';
     return 'Logging in...';
   }
@@ -62,7 +66,6 @@ class SummaryContainer extends Component {
 
 
 const mapStateToProps = (state) => {
-
   if ( state.user.lexemesLoaded && state.user.id ) {
 
     // exclude lexemes that don't have tasks for selected level

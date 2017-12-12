@@ -17,7 +17,7 @@ class SummaryProgress extends Component {
         <div className="rightCol">
           {
             lexemeCount === 0
-            ? 'There are no words to learn! Go ahead and choose some:'
+            ? 'There are no words to learn. Go ahead and choose some:'
             : <span>You are learning <strong>{ lexemeCount }</strong> { lexemeCount === 1 ? 'word' : 'words' } at <strong>{ TranslateLevels.numToStr(this.props.level) }</strong> level.
               <ProgressBar poor={ poor } learning={ learning } mastered={ mastered } /></span>
           }

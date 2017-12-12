@@ -26,6 +26,34 @@ export const login = (username, password) => {
 }
 
 
+export const signup = (username, password) => {
+  const url = `${API_BASE_URL}/signup`;
+  const params = {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ name: username, password })
+  }
+
+  return fetch(url, params)
+    .then( response => {
+      switch ( response.status ) {
+        case 403:
+          return 'Too many signup attempts. Try again in 10 minutes.'
+        case 406:
+          return 'Username must be compiled of letters only, the password of letters, -, _ and numbers.'
+        case 409:
+          return 'Username is already taken.'
+        case 200:
+          return 'Thanks for signing up! You can now login.'
+        default:
+          return;
+      }
+    })
+    .then( message => message )
+    .catch( error => { } );
+}
+
+
 export const fetchUser = (token) => (dispatch) => {
   const url = `${API_BASE_URL}/user/myId`;
   const params = {
@@ -54,6 +82,22 @@ export const changeLevel = (level) => (dispatch, getState) => {
   return fetch(url, params)
     .then( response => response.json() )
     .then( user => dispatch(setUser(user)) )
+    .catch( error => { } );
+}
+
+
+export const dumpNewbieState = () => (dispatch, getState) => {
+  const url = `${API_BASE_URL}/user/myId`;
+  const params = {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + getState().user.token
+    },
+    body: JSON.stringify({ newbie: false })
+  }
+
+  return fetch(url, params)
     .catch( error => { } );
 }
 

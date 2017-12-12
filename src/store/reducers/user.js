@@ -22,6 +22,7 @@ export const userReducer = (state = { lexemes: [] }, action) => {
         id: action.payload._id,
         name: action.payload.name,
         level: action.payload.level,
+        newbie: action.payload.newbie,
         lexemes: []
       };
     }
