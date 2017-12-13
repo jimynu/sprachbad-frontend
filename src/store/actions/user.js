@@ -126,7 +126,9 @@ export const addToBath = (lexemeId) => (dispatch, getState) => {
 
   return fetch(url, params)
     .then( response => response.json() )
-    .then( lexeme => dispatch(addToMyLexemes([lexeme])) )
+    .then( lexeme => { // double -> 409 conflict
+      if (!lexeme.error) dispatch(addToMyLexemes([lexeme]))
+    })
     .catch( error => { } );
 }
 
@@ -139,6 +141,8 @@ export const removeFromBath = (lexemeId) => (dispatch, getState) => {
 
   return fetch(url, params)
     .then( response => response.json() )
-    .then( lexemeId => dispatch(removeFromMyLexemes(lexemeId)) )
+    .then( lexemeId => { // not in list –> 409 conflict
+      if (!lexemeId.error) dispatch(removeFromMyLexemes(lexemeId))
+    })
     .catch( error => { } );
 }
