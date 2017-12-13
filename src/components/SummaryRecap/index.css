@@ -29,9 +29,8 @@
 }
 
 
-.Recap .correctAnswer,
 .Recap .wrongAnswer {
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .Recap .correctAnswer {

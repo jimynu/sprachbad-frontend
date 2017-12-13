@@ -18,3 +18,7 @@ header .centered {
   text-align: center;
   margin: 0 30px 0 0;
 }
+
+header img {
+  height: 50px;
+}

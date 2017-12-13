@@ -20,7 +20,10 @@ class Bath extends Component {
     const tokenFromLocalStorage = localStorage.getItem('token');
     if ( tokenFromLocalStorage ) {
       this.props.dispatch( fetchUser(tokenFromLocalStorage) )
-        .then( () => this.props.dispatch(runBath()) )
+        .then( (action) => {
+          if ( action.payload.error ) return this.props.history.push('/login');
+          this.props.dispatch(runBath())
+        })
     } else {
       this.props.history.push('/login')
     }

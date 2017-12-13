@@ -17,6 +17,9 @@ class Settings extends Component {
       const tokenFromLocalStorage = localStorage.getItem('token');
       if ( tokenFromLocalStorage ) {
         this.props.dispatch( fetchUser(tokenFromLocalStorage) )
+          .then( (action) => {
+            if ( action.payload.error ) return this.props.history.push('/login');
+          })
       } else {
         this.props.history.push('/login')
       }
