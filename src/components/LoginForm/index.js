@@ -48,7 +48,6 @@ class LoginForm extends Component {
       .then( action => {
         if (!action.payload.error) {
           this.props.dispatch(action);
-          // setTimeout( () => this.props.history.push('/'), 100)
           this.props.history.push('/')
         } else {
           this.setState({ username: '', password: '', loginFailed: true, message: '' });
